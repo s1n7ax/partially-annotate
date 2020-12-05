@@ -17,7 +17,7 @@ I only had time to design it for my requirement. So this support reading from
 * pip
 
 ## How to use
-* Clone the project `git clone https://github.com/s1n7ax/partially-annotator.git`
+* Clone the project `git clone https://github.com/s1n7ax/partially-annotate.git`
 * Create python env and activate
 ```
 cd partially-annotator
