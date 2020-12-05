@@ -30,7 +30,7 @@ def main():
     # cv2.waitKey(0)
 
 
-    project = Project(network, classnames, './resources', 'resources')
+    project = Project(network, classnames, './resources/training', './resources')
     project.generate()
 
 
