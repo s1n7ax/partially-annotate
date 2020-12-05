@@ -1,0 +1,6 @@
+env
+.vscode
+.vim
+__pycache__
+resources/obj.*
+
