@@ -71,13 +71,20 @@ class DefaultNetoworkFactory:
 
     def get(self, type):
         if type == 'darknet':
-            return DarknetYoloNetwork()
+            # @todo passing the blob resolution like below is so stupid
+            # come up with something better
+            # for darknet yolo at least, there should be a way to read width and
+            # height from the configuration
+            return DarknetYoloNetwork(416, 416)
 
 
 class DarknetYoloNetwork:
     """Network that is compatible with Darknet"""
 
-    def __init__(self, cfg_path='resources/obj.cfg', weights_path='resources/obj.weights'):
+    def __init__(self, blob_width, blob_height, cfg_path='resources/obj.cfg', weights_path='resources/obj.weights'):
+        self.blob_width = blob_width
+        self.blob_height = blob_height
+
         self.cfg_path = cfg_path
         self.weights_path = weights_path
         self.net = cv2.dnn.readNetFromDarknet(self.cfg_path, self.weights_path)
@@ -90,7 +97,7 @@ class DarknetYoloNetwork:
         """Returns row output from yolo output layers"""
 
         width, height = image.get_size()
-        image_blob = image.get_blob(width, height)
+        image_blob = image.get_blob(self.blob_width, self.blob_height)
 
         self.net.setInput(image_blob)
         return self.forward_layers()

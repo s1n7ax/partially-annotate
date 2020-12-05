@@ -119,6 +119,7 @@ class Project:
                 copyfile(image_path, path.join(self.output_img_dir, f))
                 self.write_json(image_json_file, imagedata)
 
+    # @todo let the user deside what types of images to filter
     def isimage(self, file: str) -> bool:
         return re.match("(.*.png$|.*.jpeg$|.*.jpg$)", file) is not None
 
