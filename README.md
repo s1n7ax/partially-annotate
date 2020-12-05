@@ -1,4 +1,4 @@
-# partially-annotator
+# partially-annotate
 Partially annotate images for Computer Vision and generate project that can be
 imported to the annotation tool
 
