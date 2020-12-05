@@ -2,6 +2,7 @@ import json
 import re
 import datetime
 import time
+import random
 from shutil import copyfile
 
 from pathlib import Path
@@ -41,15 +42,18 @@ def get_bbox_json_dummy(classname: str, min_point: List[int], max_point: List[in
 
 
 def get_meta_json_dummy(clssnames: List[str]):
+    c = lambda: random.randint(0, 255)
+
     meta = {}
     meta['classes'] = []
     meta['tags'] = []
     meta['projectType'] = 'images'
     for classname in clssnames:
+        color = '#%02X%02X%02X' % (c(), c(), c())
         meta['classes'].append({
             "title": classname,
             "shape": "rectangle",
-            "color": "#298FAE",
+            "color": color,
             "geometry_config": {},
             "id": 1,
             "hotkey": ""
