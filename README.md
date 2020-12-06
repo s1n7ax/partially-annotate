@@ -11,6 +11,9 @@ As model improves, the number of correction user has to do is less.
 I only had time to design it for my requirement. So this support reading from
 `Darknet` only and generating `Supervise.ly` project type only.
 
+### Demo video:
+[![Demo](https://img.youtube.com/vi/0tGybFSp4B8/hqdefault.jpg)](https://youtu.be/0tGybFSp4B8)
+
 ## Prerequisites
 * opencv (with CUDA support)
 * python 3
