@@ -1,37 +1,42 @@
-## Welcome to GitHub Pages
+# partially-annotate
+Partially annotate images for Computer Vision and generate project that can be
+imported to the annotation tool
 
-You can use the [editor on GitHub](https://github.com/s1n7ax/partially-annotate/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+Image annotation for Computer Vision is a manual work and it's too painful. My
+requirement is to partially train a `Yolo` neural network using bulk of data,
+(manually annotated) and use that trained network to partially annotate
+another bulk of data. User can review and re-correct what CNN got wrong.
+As model improves, the number of correction user has to do is less.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+I only had time to design it for my requirement. So this support reading from
+`Darknet` only and generating `Supervise.ly` project type only.
 
-### Markdown
+## Prerequisites
+* opencv (with CUDA support)
+* python 3
+* pip
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+## How to use
+* Clone the project `git clone https://github.com/s1n7ax/partially-annotate.git`
+* Create python env and activate
 ```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/s1n7ax/partially-annotate/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+cd partially-annotator
+python -m venv env
+source env/bin/activate
+```
+* Install dependencies
+```
+pip install -r requirements.txt
+```
+* Add following `Yolo` files to `resources` directory
+	* obj.cfg (`Yolo` configuration file used to train the it)
+	* obj.weights (`Yolo` weights file)
+	* obj.names (`Yolo` names files that contains all the classes)
+* Move all the images, that needs to be partially annotated, to
+  `resources/training` directory. (By default, this is picking all the \*.jpeg,
+  \*.jpg, \*.png) files from `training` directory
+* Run `python src/main.py` to generate the `Supervise.ly` project (blob size is 
+set to 416 by default. You can change it in "DefaultNetworkFactory "class for DarknetYoloNetwork)
+* Import the project "import plugin" to Supervisely when importing
+* Open the project. You should have all the images partially annotated
+* Now you can review and re-correct if needed
