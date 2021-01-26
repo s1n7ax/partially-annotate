@@ -7,6 +7,14 @@ class DefaultBBoxConfidenceModel:
         self.confidence_index = confidence_index
         self.confidence = confidence
 
+    def __str__(self):
+        return ("class index::" + str(self.confidence_index) +
+        ", confidence::"+ str(self.confidence))
+
+    def __repr__(self):
+        return ("class index::" + str(self.confidence_index) +
+        ", confidence::"+ str(self.confidence))
+
 
 class OpenCVBBoxConfidenceModel:
     def __init__(self, min_point, max_point, confidence_index, confidence):

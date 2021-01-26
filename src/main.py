@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+
+from sys import argv
 from yoloannotator.network import NetworkManagerBuilder
 from yoloannotator.converters import YoloToOpenCVBBoxConfidenceConverter
 from yoloannotator.supervisely import Project

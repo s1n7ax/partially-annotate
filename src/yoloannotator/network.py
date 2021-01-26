@@ -75,7 +75,7 @@ class DefaultNetoworkFactory:
             # come up with something better
             # for darknet yolo at least, there should be a way to read width and
             # height from the configuration
-            return DarknetYoloNetwork(416, 416)
+            return DarknetYoloNetwork(640, 640)
 
 
 class DarknetYoloNetwork:
